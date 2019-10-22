@@ -2,11 +2,17 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  p Tällä sivulla on To Do -lista
-  form#formcreatetask(method="post",action="/addtehtava")
+ 
+  p Syötä tehtävä
+  form#formcreatetask(method="post",action="/")
     input#formtask(type="text", placeholder="Tehtävä", name="task")
     button#formsubmit(type="submit") Create
   ul
     for item in tehtavat
-      li=item.task
+      li
+        =item.task
+        button
+          a(href="http://localhost:3000/delete?id=" + item.id) Remove
+
+  
+
