@@ -9,14 +9,15 @@ block content
       document.getElementById("myPopup").style.display = "none";
     }
   h1= title
-  div(class="container")
-    div(class="row")
-      div(class="col-sm")
+  div(class="grid-container")
+    div(class="card bg-primary")
+      div(class="card-body text-center")
         p Syötä tehtävä
         form#formcreatetask(method="post",action="/addtask")
           input#formtask(type="text", placeholder="Tehtävä", name="task" required)
           button#formsubmit(type="submit") Create
-      div(class="col-sm")
+      div(class="card bg-warning")
+        
         ul
           for item in tehtavat
             li
@@ -48,10 +49,16 @@ block content
                   button(class="btn Remove")
                     a(href="http://localhost:3000/delete?id=" + item.id) Remove
                 button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
+<<<<<<< HEAD
+      div(class="card bg-success")
+        div(class="card-body text-center")
+=======
 
       div(class="col-sm")
+>>>>>>> b05d758efc4a86901df78e44663c24b58fb5253f
         p Kolmas palsta
-      div(class="col-sm")
+      div(class="card bg-danger")
+        div(class="card-body text-center")
         p Neljäs palsta
       
 
