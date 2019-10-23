@@ -11,10 +11,13 @@ let tehtavat = [];
 
 //lukee json-tiedoston ja parseroi sen, jotta voidaan käyttää
 fs.readFile('tehtavat.json', function(err, data) {
-  console.log('Tehtävät luettu');
-  tehtavat = JSON.parse(data);
+  try {
+      tehtavat = JSON.parse(data.toString());
+  } catch (err) {
+    console.error("Ongelma tiedoston 'tehtavat.json' kanssa:", err.message);
+  }
   console.log(tehtavat);
-})
+});
 /* GET home page. */
 //Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
 router.get('/', function(req, res, next) {
