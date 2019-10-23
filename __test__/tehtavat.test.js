@@ -35,7 +35,7 @@ test('/delete poistaa tehtävän listalta', () => {
 test('/edit muokkaa tehtavaa', () => {
   const uusi = {task: 'Tanssi ripaskaa'};
   return request(app)
-  .get("/delete")
+  .get("/edit")
   .send(uusi)
   .then(response => {
     //expect(response.body.length).toBe(0);
