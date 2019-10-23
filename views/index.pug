@@ -1,18 +1,33 @@
 extends layout
 
 block content
+  script.
+    let avaaIkkuna = function() {
+      document.getElementById("myPopup").style.display = "block";
+    }
+    let suljeIkkuna = function() {
+      document.getElementById("myPopup").style.display = "none";
+    }
   h1= title
  
   p Syötä tehtävä
   form#formcreatetask(method="post",action="/")
-    input#formtask(type="text", placeholder="Tehtävä", name="task")
+    input#formtask(type="text", placeholder="Tehtävä", name="task" required)
     button#formsubmit(type="submit") Create
   ul
     for item in tehtavat
       li
         =item.task
-        button
-          a(href="http://localhost:3000/delete?id=" + item.id) Remove
+        div#myPopup(class="edit-popup")
+          form(method="post" action="/edit" class="popupContainer")
+            h1 Editoi
+            input#otsikko(type="text", placeholder="Tehtävä", name="task")
+            input(type="hidden", name="id", value=item.id)
+            button(class="btn Cancel" "onclick"="suljeIkkuna()") Sulje
+            button(type="submit" class="btn Edit") Edit
+            button(class="btn Remove")
+              a(href="http://localhost:3000/delete?id=" + item.id) Remove
+        button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
 
   
 
