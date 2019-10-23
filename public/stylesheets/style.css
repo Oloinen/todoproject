@@ -4,9 +4,10 @@ body {
   background-image: url("tausta.jpg");
   background-size: cover;
 }
-.grid-container {
+.container {
   display: flex;
   flex-grow: 1600px;
+  background-color: pink;
 }
 .col-1 {
   background: pink;
