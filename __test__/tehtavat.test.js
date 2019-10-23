@@ -32,7 +32,7 @@ test('/delete poistaa tehtävän listalta', () => {
 });
 
 //tee edit testi
-test('/delete poistaa tehtävän listalta', () => {
+test('/edit muokkaa tehtavaa', () => {
   const uusi = {task: 'Tanssi ripaskaa'};
   return request(app)
   .get("/delete")
