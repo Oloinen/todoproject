@@ -15,7 +15,22 @@ block content
         p Syötä tehtävä
         form#formcreatetask(method="post",action="/addtask")
           input#formtask(type="text", placeholder="Tehtävä", name="task" required)
+        form(action="").form-inline
+        .form-group.col-md-4
+        textarea(rows=3).form-control
+          | Muokkaa
+        div(class="select_box_area")
+          p(class="select")
+            span(class="placeholder")
+              | Tärkeys
+            em(class="fa fa-angle-down")
+          ul(class="filter_list")
+            li
+              label
+                input(type="checkbox")
+                | Kiireellinen   
           button#formsubmit(type="submit") Create
+          .container-fluid
       div(class="col-sm")
         ul
           for item in tehtavat
