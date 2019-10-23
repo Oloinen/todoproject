@@ -3,10 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-image: url("tausta.jpg");
   background-size: cover;
+  background-color: #4CAF50 !important;
 }
-.grid-container {
+.container {
   display: flex;
   flex-grow: 1600px;
+  background-color: pink;
 }
 .col-1 {
   background: pink;
