@@ -61,7 +61,7 @@ router.post('/edit', function(req, res, next) {
   }
 })
 
-//Tallentaa palvelimella olevan arrayn json-tiedostoon json-muodossa
+//Tallentaa palvelimella olevan arrayn json-tiedostoon json-muodossa - kommentti
 function saveTehtavat() {
   fs.writeFile('tehtavat.json', JSON.stringify(tehtavat), () => {console.log("Tehtävä lisätty luetteloon")});
 }
