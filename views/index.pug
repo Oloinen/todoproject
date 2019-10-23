@@ -22,7 +22,24 @@ block content
           for item in tehtavat
             li
               =item.task
-              div#myPopup(class="edit-popup")
+              button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal") Muokkaa
+              div(class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+                div(class="modal-dialog" role="document")
+                  div(class="modal-content")
+                    div(class="modal-header")
+                        h5(class="modal-title" id="exampleModalLabel")=item.task
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true") &times;
+                    form(method="post" action="/edit" class="popupContainer")      
+                      div(class="modal-body")
+                        //form(method="post" action="/edit" class="popupContainer")
+                        input#otsikko(type="text", placeholder="Tehtävä", name="task")
+                        input(type="hidden", name="id", value=item.id)
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-secondary") 
+                          a(href="http://localhost:3000/delete?id=" + item.id) Poista
+                        button(type="submit" class="btn btn-primary") Tallenna
+              //div#myPopup(class="edit-popup")
                 form(method="post" action="/edit" class="popupContainer")
                   h1 Editoi
                   input#otsikko(type="text", placeholder="Tehtävä", name="task")
@@ -32,12 +49,20 @@ block content
                   button(class="btn Remove")
                     a(href="http://localhost:3000/delete?id=" + item.id) Remove
                 button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
+<<<<<<< HEAD
       div(class="card bg-success")
         div(class="card-body text-center")
+=======
+
+      div(class="col-sm")
+>>>>>>> b05d758efc4a86901df78e44663c24b58fb5253f
         p Kolmas palsta
       div(class="card bg-danger")
         div(class="card-body text-center")
         p Neljäs palsta
+      
+
+          
 
   
 
