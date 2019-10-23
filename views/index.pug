@@ -9,25 +9,32 @@ block content
       document.getElementById("myPopup").style.display = "none";
     }
   h1= title
-  div.grid-container
-  p Syötä tehtävä
-  form#formcreatetask(method="post",action="/")
-    input#formtask(type="text", placeholder="Tehtävä", name="task" required)
-    button#formsubmit(type="submit") Create
-  ul
-    for item in tehtavat
-      li
-        =item.task
-        div#myPopup(class="edit-popup")
-          form(method="post" action="/edit" class="popupContainer")
-            h1 Editoi
-            input#otsikko(type="text", placeholder="Tehtävä", name="task")
-            input(type="hidden", name="id", value=item.id)
-            button(class="btn Cancel" "onclick"="suljeIkkuna()") Sulje
-            button(type="submit" class="btn Edit") Edit
-            button(class="btn Remove")
-              a(href="http://localhost:3000/delete?id=" + item.id) Remove
-        button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
+  div(class="container")
+    div(class="row")
+      div(class="col-sm")
+        p Syötä tehtävä
+        form#formcreatetask(method="post",action="/addtask")
+          input#formtask(type="text", placeholder="Tehtävä", name="task" required)
+          button#formsubmit(type="submit") Create
+      div(class="col-sm")
+        ul
+          for item in tehtavat
+            li
+              =item.task
+              div#myPopup(class="edit-popup")
+                form(method="post" action="/edit" class="popupContainer")
+                  h1 Editoi
+                  input#otsikko(type="text", placeholder="Tehtävä", name="task")
+                  input(type="hidden", name="id", value=item.id)
+                  button(class="btn Cancel" "onclick"="suljeIkkuna()") Sulje
+                  button(type="submit" class="btn Edit") Edit
+                  button(class="btn Remove")
+                    a(href="http://localhost:3000/delete?id=" + item.id) Remove
+                button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
+      div(class="col-sm")
+        p Kolmas palsta
+      div(class="col-sm")
+        p Neljäs palsta
 
   
 
