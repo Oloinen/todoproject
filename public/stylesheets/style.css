@@ -1,8 +1,33 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("tausta.jpg");
+  background-size: cover;
 }
-
+.grid-container {
+  display: flex;
+  flex-grow: 1600px;
+}
+.col-1 {
+  background: pink;
+  width: 400px;
+  border-radius: 25px;
+}
+.col-2 {
+  background: paleturquoise;
+  width: 400px;
+  border-radius: 25px;
+}
+.col-3 {
+  background: peachpuff;
+  width: 400px;
+  border-radius: 25px;
+}
+.col-4 {
+  background: rgb(173, 86, 152);
+  width: 400px;
+  border-radius: 25px;
+}
 a {
   color: #00B7FF;
 }
