@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../app');
-const tehtava = require('../routes/index').tehtava
+//const tehtava = require('../routes/index').tehtava
 
 test("POST lisää tehtävän listaan", () => {
   const uusi = {task: "Tanssi ripaskaa"};
@@ -19,3 +19,29 @@ test("hakee ja renderöi kotisivun", () => {
    expect(response.statusCode).toBe(200); 
   });
 });
+
+test('/delete poistaa tehtävän listalta', () => {
+  const uusi = {task: 'Tanssi ripaskaa'};
+  return request(app)
+  .get("/delete")
+  .send(uusi)
+  .then(response => {
+    //expect(response.body.length).toBe(0);
+    expect(response.statusCode).toBe(200);
+  });
+});
+
+//tee edit testi
+test('/delete poistaa tehtävän listalta', () => {
+  const uusi = {task: 'Tanssi ripaskaa'};
+  return request(app)
+  .get("/delete")
+  .send(uusi)
+  .then(response => {
+    //expect(response.body.length).toBe(0);
+    expect(response.statusCode).toBe(200);
+  });
+});
+
+
+
