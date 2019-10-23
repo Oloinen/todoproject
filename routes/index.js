@@ -43,11 +43,29 @@ router.get('/delete', function(req, res) {
     if (tehtavat[i].id == req.query.id) {
       tehtavat.splice(i, 1);
       saveTehtavat();
-      return;
+      break;
     }
   }
   res.render('index', {title: 'To Do -lista', tehtavat: tehtavat})
 })
+
+router.post('/edit', function(req, res, next) {
+  console.log(req.body)
+  console.log(req.body.taskEdit)
+  let uusitehtava = req.body;
+  for (let i=0; i<tehtavat.length;i++) {
+    if (tehtavat[i].id == req.body.id) {
+      tehtavat[i] = uusitehtava;
+      res.render('index', {title: 'To Do -lista', tehtavat: tehtavat})
+      saveTehtavat();
+      console.log("tehtävä vaihdettu")
+      break;
+    }
+  }
+  
+})
+
+
 
 //Tallentaa palvelimella olevan arrayn json-tiedostoon json-muodossa
 function saveTehtavat() {
