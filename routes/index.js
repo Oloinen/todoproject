@@ -7,18 +7,6 @@ let app = express();
 //app.use(bodyParser.urlencoded({extended:true}));
 //app.use(bodyParser());
 
-//lukee json-tiedoston ja parseroi sen, jotta voidaan käyttää
-/*fs.readFile('tehtavat.json', function(err, data) {
-  try {
-      tehtavat = JSON.parse(data.toString());
-  } catch (err) {
-    console.error("Ongelma tiedoston 'tehtavat.json' kanssa:", err.message);
-  }
-  console.log(tehtavat);
-  console.log(tulevat);
-});*/
-
-
 //array, jotta saadaan json-tiedoston tiedot käyttöön
 let tehtavat = [];
 let nykyiset = [];
@@ -36,9 +24,6 @@ fs.readFile('tehtavat.json', function(err, data) {
 
 //Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
-  res.render('index', {tehtavat: tehtavat});
-=======
   tulevat = tehtavat.filter(function(e) {
     return e.divide == 1;
   });
@@ -49,19 +34,25 @@ router.get('/', function(req, res, next) {
     return e.divide == 3;
   })
   res.render('index', { title: 'To Do -lista', tulevat:tulevat, nykyiset:nykyiset, tehdyt:tehdyt});
->>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
 });
 
 //Post-toiminto, jolla voi lisätä tehtäviä listaan -> vastaanottaa käyttäjän syötteen ja lisää olion palvelimella olevaan arrayhyn
 //Lisäksi ohjaa selaimen takaisin etusivulle, ettei selain jää roikkumaan /addtask-sivulle
 router.post('/addtask', function(req, res, next) {
-  console.dir(req.body)
-  req.body.textarea=req.body.textarea || "";
+  tulevat = tehtavat.filter(function(e) {
+    return e.divide == 1;
+  });
+  if (tulevat.length < 3) {
+  req.body.teksti=req.body.teksti || "";
+  req.body.urgent=req.body.urgent || false;
   let uusitehtava = req.body;
   uusitehtava.id = uuid();
   tehtavat.push(uusitehtava);
   saveTehtavat();
   res.redirect('/');
+  } else {
+  res.redirect('/');
+  }
 })
 
 //Poistaa yhden tehtävän. Eli ensin tunnistaa id:n, vertaa sitä arrayhin, poimii sieltä vastaavan ja ottaa sen pois.

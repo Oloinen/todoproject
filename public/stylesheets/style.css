@@ -9,104 +9,119 @@ body {
 .otsikko {
   font: 200 80px/1.3 'Cormorant Garamond', sans-serif;
   text-align: center;
-  color: rgb(255, 255, 255) ;
+  color: rgb(250, 231, 196) ;
 }
 .kolumniotsikko {
   font: 200 25px/1.3 'Fira Sans', sans-serif;
   text-align: center;
-  color: #18121E;
+  color: #4b2c29;
 }
-
 .container {
   display: flex;
   width: 100%;
   background-color: pink;
 }
-<<<<<<< HEAD
 .col-1 {
   background: rgb(234, 198, 122, 0.8);
-=======
-.col-sm {
-  width: 25%;
-}
-.col1 {
-  background: pink;
-  width: 400px;
-  border-radius: 25px;
-}
-.col-2 {
-  background: paleturquoise;
->>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
   width: 400px;
   border-radius: 25px;
   margin: 10px;
-  height: 550px;
+  min-height: 550px;
 }
 
-.btnOpen {
-  background-color: rgb(231, 28, 123);
-  margin: 0 0 0 10px;
-  color: white;
-  padding: 4px 8px;
+.card {
+  margin: 20px auto;
+  width: 280px;
+}
+
+.buttoni {
+  background-color: #984b43;
   border: none;
   cursor: pointer;
-  opacity: 0.8;
-  /*position: fixed;*/
-  bottom: 10px;
-  right: 10px;
-}
-
-/* The popup form - hidden by default */
-.edit-popup {
-  /*display: none;*/
-  width: 200px;
-  /*position: fixed;*/
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Add styles to the form container */
-.popupContainer {
-  max-width: 100%;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width input fields */
-.popupContainer input[type=text] {
-  max-width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.popupContainer input[type=text]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit/login button */
-.popupContainer .btn {
-  background-color: #4CAF50;
+  opacity: 0.9;
+  font-size: 13px;
   color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
+  height: 25px;
 }
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.popupContainer .btn:hover, .btnOpen:hover {
+.container.fluid .buttoni:hover, .napukka:hover {
   opacity: 1;
+}
+
+.formidivi {
+  width: 200px;
+  margin: auto;
+}
+
+.tuut {
+  width: 100%;
+  margin: 10px 0;
+  align-content: center;
+}
+
+.napukka {
+  width: 100%;
+  height: 30px;
+  background-color: #984b43;
+  border: none;
+  margin: 10px 0px;
+  color: white;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+.korttiotsikko {
+  font-size: 18px;
+  text-align: left;
+}
+.korttivartalo {
+   font-size: 14px;
+   text-align: left;
+}
+.card-body {
+   padding: 5px;
+}
+
+.card-footer {
+  height: 40px;
+  align-content: left;
+  padding: 7px !important;
+}
+
+.vaara {
+  background-color: #984b43;
+  border-radius: 20px;
+  border: none;
+  width: 22px;
+  height: 22px;
+  float: right;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+.btn-group {
+  float: left;
+  height: 50px;
+  position: relative;
+}
+
+.vasen {
+  border-radius: 5px 0 0 5px;
+}
+
+.oikea {
+  border-radius: 0 5px 5px 0;
+}
+.kaikki {
+  border-radius: 5px;
 }
