@@ -9,6 +9,9 @@ body {
   flex-grow: 1600px;
   background-color: pink;
 }
+.col-sm {
+  width: 25%;
+}
 .col1 {
   background: pink;
   width: 400px;
