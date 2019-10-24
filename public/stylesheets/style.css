@@ -1,16 +1,20 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("liuku.jpg");
-  background-position: center;
+  font: 14px "Fira Sans";
+  background-image: url("camera.jpg");
+  background-position: left;
   background-size: auto;
   
 }
 .otsikko {
-  font: 200 80px/1.3 'Playfair Display', Helvetica, sans-serif;
-  font-style: italic;
+  font: 200 80px/1.3 'Cormorant Garamond', sans-serif;
   text-align: center;
-  color: rgb(255, 255, 255, 0.8) ;
+  color: rgb(255, 255, 255) ;
+}
+.kolumniotsikko {
+  font: 200 25px/1.3 'Fira Sans', sans-serif;
+  text-align: center;
+  color: #18121E;
 }
 
 .container {
@@ -19,7 +23,7 @@ body {
   background-color: pink;
 }
 .col-1 {
-  background: rgb(234, 198, 122, 0.6);
+  background: rgb(234, 198, 122, 0.8);
   width: 400px;
   border-radius: 25px;
   margin: 10px;

@@ -30,6 +30,7 @@ block content
                   input(type="checkbox" name="checkbox")
                   | Kiireellinen
       div(class="col-sm col-1")
+        h3(class="kolumniotsikko") Tehtävät
         ul
           for item in tehtavat
             div(class="card")
@@ -55,8 +56,10 @@ block content
                     a(href="http://localhost:3000/delete?id=" + item.id) Poista
               
       div(class="col-sm col-1")
+        h3(class="kolumniotsikko") Kesken
         p Kolmas palsta
       div(class="col-sm col-1")
+        h3(class="kolumniotsikko") Valmiit
         div(class="btn-group")
           button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Lomake
           ul(class="dropdown-menu")
