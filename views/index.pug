@@ -3,46 +3,21 @@ extends layout
 block content
   h1(class="otsikko") Tehtävälista
   script.
-<<<<<<< HEAD
-    let avaaIkkuna = function() {
-      document.getElementById("myPopup").style.display = "block";
-    }
-    let suljeIkkuna = function() {
-      document.getElementById("myPopup").style.display = "none";
-    }
-=======
   h1= title
->>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
   div(class="container.fluid")
     div(class="row")
-      div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Syötä tehtävä
-        form#formcreatetask(method="post",action="/addtask")
-          input#formtask(type="text", placeholder="Tehtävä", name="task" maxlength="200" required)
-          button#formsubmit(type="submit") Create
-            .container-fluid
-          textarea(rows=3 name="textarea" maxlength="500" placeholder="Lisätiedot").form-control
-            | 
+      div(class="col-sm col1")
+        h3 Syötä tehtävä
+        form(method="post",action="/addtask")
+          div(class="form_area")
+            input(type="hidden" name="divide" value=1)
+            input(type="text" placeholder="Tehtävä", name="task" required maxlength="200")
+            textarea(name="textarea" rows=3 placeholder="Lisätiedot" maxlength="500")
           div(class="select_box_area")
-            p(class="select")
-              span(class="placeholder")
-                h6 Tärkeys
-              em(class="fa fa-angle-down")
-            ul(class="filter_list")
-              li
-                label
-<<<<<<< HEAD
-                  input(type="checkbox" name="checkbox")
-                  | Kiireellinen
+            input(type="checkbox" onclick="cbclick()" name="checkbox" id="checkbox")
+            | Kiireellinen
       div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Tehtävät
-=======
-                  input(type="checkbox" onclick="cbclick()" name="checkbox" id="checkbox")
-                  | Kiireellinen        
-      div(class="col-sm bg-warning")
         h3 Tehtävälista
->>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
-        ul
           for item in tulevat
             div(class="card" style="width: 18rem;")
               div(class="card-body")
@@ -67,14 +42,6 @@ block content
                         button(type="submit" class="btn btn-secondary") Tallenna
                   button(type="button" class="btn btn-secondary") 
                     a(href="http://localhost:3000/delete?id=" + item.id) Poista
-<<<<<<< HEAD
-              
-      div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Kesken
-        p Kolmas palsta
-      div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Valmiit
-=======
                   form(method="post" action="/working")
                     input(type="hidden" name="task" value=item.task)
                     input(type="hidden" name="id" value=item.id)
@@ -89,13 +56,8 @@ block content
                     input(type="hidden" value=item.textarea name="textarea")
                     input(type="hidden", name="divide", value=3)
                     button(type="submit" class="btn btn-secondary") Tehty       
-      div(class="col-sm bg-success")
-        h3 Tekeillä olevat tehtävät
-      div(class="col-sm bg-danger")
-        h3 Valmiit tehtävät
->>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
         div(class="btn-group")
-        ul
+          h3(class="kolumniotsikko") Kesken
           for item in nykyiset
             div(class="card")
               div(class="card-body")
@@ -133,8 +95,8 @@ block content
                     input(type="hidden" value=item.textarea name="textarea")
                     input(type="hidden", name="divide", value=3)
                     button(type="submit" class="btn btn-secondary") Tehty
-      div(class="col-sm bg-danger")
-        ul
+      div(class="col-sm col-1")
+        h3(class="kolumniotsikko") Valmiit
           for item in tehdyt
             div(class="card")
               div(class="card-body")

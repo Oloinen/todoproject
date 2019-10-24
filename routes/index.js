@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const uuid = require('uuidv4').default;
 const fs = require('fs');
 let app = express();
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({extended:true}));
+//app.use(bodyParser());
 
 //lukee json-tiedoston ja parseroi sen, jotta voidaan käyttää
 /*fs.readFile('tehtavat.json', function(err, data) {
@@ -54,7 +55,8 @@ router.get('/', function(req, res, next) {
 //Post-toiminto, jolla voi lisätä tehtäviä listaan -> vastaanottaa käyttäjän syötteen ja lisää olion palvelimella olevaan arrayhyn
 //Lisäksi ohjaa selaimen takaisin etusivulle, ettei selain jää roikkumaan /addtask-sivulle
 router.post('/addtask', function(req, res, next) {
-  console.log(req.body)
+  console.dir(req.body)
+  req.body.textarea=req.body.textarea || "";
   let uusitehtava = req.body;
   uusitehtava.id = uuid();
   tehtavat.push(uusitehtava);
