@@ -35,6 +35,7 @@ fs.readFile('tehtavat.json', function(err, data) {
 
 //Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
 router.get('/', function(req, res, next) {
+  console.log(tulevat);
   tulevat = tehtavat.filter(function(e) {
     return e.divide == 1;
   });
