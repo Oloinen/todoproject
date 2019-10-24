@@ -1,0 +1,78 @@
+extends layout
+
+block content
+  script.
+    let avaaIkkuna = function() {
+      document.getElementById("myPopup").style.display = "block";
+    }
+    let suljeIkkuna = function() {
+      document.getElementById("myPopup").style.display = "none";
+    }
+  div(class="container.fluid")
+    div(class="row")
+      div(class="col-sm bg-primary")
+        h3 Syötä tehtävä
+        form#formcreatetask(method="post",action="/addtask")
+          div(class="form-group")
+            label(for="taskName") Tehtävä:
+            input#formtask(type="text" placeholder="Tehtävä" name="task" required)
+          div(form-group)
+            label(for="taskDescription") Kuvaus
+            textarea(rows=3 name="descrip")
+          div(class="form-check")
+            input(type="hidden" value="0" name="urgent")
+            input(type="checkbox" class="form-check-input" name="urgent" value="kiireellinen")
+            label(class="form-check-label" for="checkUrgent") Kiireellinen
+          button#formsubmit(type="submit") Create
+      div(class="col-sm bg-warning")  
+        ul
+          for item in tehtavat
+            li
+              =item.task + item.descrip + item.urgent
+              button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal") Muokkaa
+              div(class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+                div(class="modal-dialog" role="document")
+                  div(class="modal-content")
+                    div(class="modal-header")
+                        h5(class="modal-title" id="exampleModalLabel")=item.task
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                          span(aria-hidden="true") &times;
+                    form(method="post" action="/edit" class="popupContainer")      
+                      div(class="modal-body")
+                        input#otsikko(type="text", placeholder="Tehtävä", name="task")
+                        input(type="hidden", name="id", value=item.id)
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-secondary") 
+                          a(href="http://localhost:3000/delete?id=" + item.id) Poista
+                        button(type="submit" class="btn btn-primary") Tallenna
+                //div#myPopup(class="edit-popup")
+                  form(method="post" action="/edit" class="popupContainer")
+                    h1 Editoi
+                    input#otsikko(type="text", placeholder="Tehtävä", name="task")
+                    input(type="hidden", name="id", value=item.id)
+                    button(class="btn Cancel" "onclick"="suljeIkkuna()") Sulje
+                    button(type="submit" class="btn Edit") Edit
+                    button(class="btn Remove")
+                      a(href="http://localhost:3000/delete?id=" + item.id) Remove
+                  button(class="btnOpen" "onclick"="avaaIkkuna()") Muokkaa
+      div(class="col-sm bg-success")
+        p Kolmas palsta
+      div(class="col-sm bg-danger")
+        form(class="dropdown-menu p-4")
+            div(class="form-group")
+                label(for="exampleDropdownFormEmail2") Email address
+                input(type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com")
+            div(class="form-group")
+                label(for="exampleDropdownFormPassword2") Password
+                input(type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password")
+            div(class="form-check")
+                input(type="checkbox" class="form-check-input" id="dropdownCheck2")
+                label(class="form-check-label" for="dropdownCheck2") Remember me
+            button(type="submit" class="btn btn-primary") Sign in
+        p Neljäs palsta
+      
+
+          
+
+  
+
