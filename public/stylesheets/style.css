@@ -22,8 +22,21 @@ body {
   width: 100%;
   background-color: pink;
 }
+<<<<<<< HEAD
 .col-1 {
   background: rgb(234, 198, 122, 0.8);
+=======
+.col-sm {
+  width: 25%;
+}
+.col1 {
+  background: pink;
+  width: 400px;
+  border-radius: 25px;
+}
+.col-2 {
+  background: paleturquoise;
+>>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
   width: 400px;
   border-radius: 25px;
   margin: 10px;

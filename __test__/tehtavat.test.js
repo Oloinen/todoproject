@@ -31,17 +31,7 @@ test('/delete poistaa tehtävän listalta', () => {
   });
 });
 
-//tee edit testi
-test('/edit muokkaa tehtavaa', () => {
-  const uusi = {task: 'Tanssi ripaskaa'};
-  return request(app)
-  .get("/edit")
-  .send(uusi)
-  .then(response => {
-    //expect(response.body.length).toBe(0);
-    expect(response.statusCode).toBe(200);
-  });
-});
+
 
 
 
