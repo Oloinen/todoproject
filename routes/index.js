@@ -27,6 +27,7 @@ router.get('/', function(req, res, next) {
 //Post-toiminto, jolla voi lisätä tehtäviä listaan -> vastaanottaa käyttäjän syötteen ja lisää olion palvelimella olevaan arrayhyn
 //Lisäksi ohjaa selaimen takaisin etusivulle, ettei selain jää roikkumaan /addtask-sivulle
 router.post('/addtask', function(req, res, next) {
+  console.log(req.body)
   let uusitehtava = req.body;
   uusitehtava.id = uuid();
   tehtavat.push(uusitehtava);
