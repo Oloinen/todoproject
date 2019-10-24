@@ -195,13 +195,4 @@ function saveTehtavat() {
   fs.writeFile('tehtavat.json', JSON.stringify(tehtavat), () => {console.log("Tehtävä lisätty luetteloon")});
 }
 
-  
-
-// Lisäää textarea nappiiin jotenkin näin??
-// //function addVal(obj) {
-//   Object.keys(obj).forEach(function(name) {
-//     document.querySelector('input[name="' + name + '"]').value = obj[name];    
-//   });
-// }
-
 module.exports = router;

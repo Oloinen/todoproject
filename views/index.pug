@@ -2,7 +2,6 @@ extends layout
 
 block content
   script.
-
   h1= title
   div(class="container.fluid")
     div(class="row")
@@ -31,7 +30,7 @@ block content
             ul(class="filter_list")
               li
                 label
-                  input(type="checkbox" name="checkbox")
+                  input(type="checkbox" onclick="cbclick()" name="checkbox" id="checkbox")
                   | Kiireellinen        
       div(class="col-sm bg-warning")
         h3 Tehtävälista
@@ -48,7 +47,7 @@ block content
                       p=item.task
                       div(class="form-group")
                         label(for="taskName") Tehtävä:
-                        input(type="text" placeholder="Tehtävä" name="task")
+                        input(type="text" placeholder="Tehtävä" name="task" maxlength="200")
                         input(type="hidden", name="id", value=item.id)
                         input(type="hidden" value=item.checkbox name="checkbox")
                         input(type="hidden", name="divide", value=item.divide)
