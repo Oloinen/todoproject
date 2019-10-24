@@ -2,74 +2,124 @@ extends layout
 
 block content
   h1(class="otsikko") Tehtävälista
-  script.
-    let avaaIkkuna = function() {
-      document.getElementById("myPopup").style.display = "block";
-    }
-    let suljeIkkuna = function() {
-      document.getElementById("myPopup").style.display = "none";
-    }
   div(class="container.fluid")
     div(class="row")
       div(class="col-sm col-1")
         h3(class="kolumniotsikko") Syötä tehtävä
-        form#formcreatetask(method="post",action="/addtask")
-          input#formtask(type="text", placeholder="Tehtävä", name="task" required)
-          button#formsubmit(type="submit") Create
-            .container-fluid
-          textarea(rows=3 name="textarea").form-control
-            | Lisätiedot
+        form(method="post",action="/addtask")
+          div(class="form_area")
+            input(type="hidden" name="divide" value=1)
+            input(type="text" placeholder="Tehtävä", name="task" required maxlength="200")
+            textarea(name="teksti" rows=3 placeholder="Lisätiedot" maxlength="500")
           div(class="select_box_area")
-            p(class="select")
-              span(class="placeholder")
-                | Tärkeys
-              em(class="fa fa-angle-down")
-            ul(class="filter_list")
-              li
-                label
-                  input(type="checkbox" name="checkbox")
-                  | Kiireellinen
+            input(type="checkbox" name="urgent" value="kiire")
+            | Kiireellinen
+          button(type="submit" class="napukka") Lisää
       div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Tehtävät
-        ul
-          for item in tehtavat
-            div(class="card")
+        h3(class="kolumniotsikko") Tehtävälista
+          for item in tulevat
+            div(class="card" style="width: 18rem;")
               div(class="card-body")
-                =item.task + item.descrip + item.urgent
+                h6
+                =item.task + item.teksti + item.urgent
               div(class="card-footer")
                 div(class="btn-group")
                   button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Muokkaa
-                  ul(class="dropdown-menu")
+                  ul(class="dropdown-menu p-4")
+                    form(method="post" action="/edit")
+                      p=item.task
+                      div(class="form-group")
+                        label(for="taskName") Tehtävä:
+                        input(type="text" placeholder="Tehtävä" name="task" maxlength="200")
+                        input(type="hidden", name="id", value=item.id)
+                        input(type="hidden" value=item.checkbox name="checkbox")
+                        input(type="hidden", name="divide", value=item.divide)
+                      div(class="form-group")
+                        label(for="taskDescription") Kuvaus
+                        textarea(rows=3 name="textarea")
+                      div(class="form-group")
+                        button(type="submit" class="btn btn-secondary") Tallenna
+                  button(type="button" class="btn btn-secondary") 
+                    a(href="http://localhost:3000/delete?id=" + item.id) Poista
+                  form(method="post" action="/working")
+                    input(type="hidden" name="task" value=item.task)
+                    input(type="hidden" name="id" value=item.id)
+                    input(type="hidden" value=item.checkbox name="checkbox")
+                    input(type="hidden" value=item.textarea name="textarea")
+                    input(type="hidden", name="divide", value=2)
+                    button(type="submit" class="btn btn-secondary") Kesken
+                  form(method="post" action="/done")
+                    input(type="hidden" name="task" value=item.task)
+                    input(type="hidden" name="id" value=item.id)
+                    input(type="hidden" value=item.checkbox name="checkbox")
+                    input(type="hidden" value=item.textarea name="textarea")
+                    input(type="hidden", name="divide", value=3)
+                    button(type="submit" class="btn btn-secondary") Tehty       
+      div(class="col-sm col-1")
+          h3(class="kolumniotsikko") Kesken
+          for item in nykyiset
+            div(class="card")
+              div(class="card-body")
+                p(class="card-text")
+                  =item.task + item.textarea + item.checkbox
+              div(class="card-footer")
+                div(class="btn-group" role="group" aria-label="Button group with nested dropdown")
+                  button(type="button" class="btn btn-secondary") 
+                    a(href="http://localhost:3000/delete?id=" + item.id) Poista
+                  form(method="post" action="/done")
+                    input(type="hidden" name="task" value=item.task)
+                    input(type="hidden" name="id" value=item.id)
+                    input(type="hidden" value=item.checkbox name="checkbox")
+                    input(type="hidden" value=item.textarea name="textarea")
+                    input(type="hidden", name="divide", value=3)
+                    button(type="submit" class="buttoni") Tehty
+                  button(type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown") Muokkaa
+                  ul(class="dropdown-menu p-4")
                     form(method="post" action="/edit")
                       p=item.task
                       div(class="form-group")
                         label(for="taskName") Tehtävä:
                         input(type="text" placeholder="Tehtävä" name="task")
                         input(type="hidden", name="id", value=item.id)
-                        input(type="hidden" value=item.urgent name="urgent")
+                        input(type="hidden" value=item.checkbox name="checkbox")
+                        input(type="hidden", name="divide", value=item.divide)
                       div(class="form-group")
                         label(for="taskDescription") Kuvaus
-                        textarea(rows=3 name="descrip")
+                        textarea(rows=3 name="textarea")
                       div(class="form-group")
-                        button(type="submit" class="btn btn-secondary") Tallenna
-                  button(type="button" class="btn btn-secondary") 
-                    a(href="http://localhost:3000/delete?id=" + item.id) Poista
-              
-      div(class="col-sm col-1")
-        h3(class="kolumniotsikko") Kesken
-        p Kolmas palsta
+                        button(type="submit" class="buttoni") Tallenna
       div(class="col-sm col-1")
         h3(class="kolumniotsikko") Valmiit
-        div(class="btn-group")
-          button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Lomake
-          ul(class="dropdown-menu")
-            form(method="post" action="/edit")
-              div(class="form-group")
-                input(type="text" class="form-control" id="inputEmail1" placeholder="Email")
-              div(class="form-group")
-                input(type="text" class="form-control" id="inputPassword1" placeholder="Password")
-              div(class="form-group")
-              button(type="submit" class="btn btn-default") Sign in
+          for item in tehdyt
+            div(class="card")
+              div(class="card-body")
+                =item.task + item.textarea + item.checkbox
+              div(class="card-footer")
+                div(class="btn-group")
+                  button(type="button" class="btn btn-secondary") 
+                    a(href="http://localhost:3000/delete?id=" + item.id) Poista
+                  form(method="post" action="/working")
+                    input(type="hidden" name="task" value=item.task)
+                    input(type="hidden" name="id" value=item.id)
+                    input(type="hidden" value=item.checkbox name="checkbox")
+                    input(type="hidden" value=item.textarea name="textarea")
+                    input(type="hidden", name="divide", value=2)
+                    button(type="submit" class="btn btn-secondary") Kesken
+                  button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Muokkaa
+                  ul(class="dropdown-menu p-4")
+                    form(method="post" action="/edit")
+                      p=item.task
+                      div(class="form-group")
+                        label(for="taskName") Tehtävä:
+                        input(type="text" placeholder="Tehtävä" name="task")
+                        input(type="hidden", name="id", value=item.id)
+                        input(type="hidden" value=item.checkbox name="checkbox")
+                        input(type="hidden", name="divide", value=item.divide)
+                      div(class="form-group")
+                        label(for="taskDescription") Kuvaus
+                        textarea(rows=3 name="textarea")
+                      div(class="form-group")
+                        button(type="submit" class="btn btn-secondary") Tallenna
 
                 
       
