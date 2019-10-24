@@ -17,15 +17,6 @@ block content
             p(class="select")
               span(class="placeholder")
                 h6 Tärkeys
-          input(type="hidden", name="divide", value=1)
-          input#formtask(type="text", placeholder="Tehtävä", name="task" required)
-          button#formsubmit(type="submit") Create
-          textarea(rows=3 name="textarea").form-control
-            | Lisätiedot
-          div(class="select_box_area")
-            p(class="select")
-              span(class="placeholder")
-
               em(class="fa fa-angle-down")
             ul(class="filter_list")
               li
@@ -36,8 +27,9 @@ block content
         h3 Tehtävälista
         ul
           for item in tulevat
-            div(class="card")
+            div(class="card" style="width: 18rem;")
               div(class="card-body")
+                h6
                 =item.task + item.textarea + item.checkbox
               div(class="card-footer")
                 div(class="btn-group")
