@@ -36,6 +36,9 @@ fs.readFile('tehtavat.json', function(err, data) {
 
 //Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
 router.get('/', function(req, res, next) {
+<<<<<<< HEAD
+  res.render('index', {tehtavat: tehtavat});
+=======
   tulevat = tehtavat.filter(function(e) {
     return e.divide == 1;
   });
@@ -46,6 +49,7 @@ router.get('/', function(req, res, next) {
     return e.divide == 3;
   })
   res.render('index', { title: 'To Do -lista', tulevat:tulevat, nykyiset:nykyiset, tehdyt:tehdyt});
+>>>>>>> c6af5d614e389b9bf59bcde13ea428b53959cb97
 });
 
 //Post-toiminto, jolla voi lisätä tehtäviä listaan -> vastaanottaa käyttäjän syötteen ja lisää olion palvelimella olevaan arrayhyn

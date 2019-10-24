@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  h1(class="otsikko") Tehtävälista
   script.
   h1= title
   div(class="container.fluid")
@@ -15,13 +16,12 @@ block content
           div(class="select_box_area")
             input(type="checkbox" onclick="cbclick()" name="checkbox" id="checkbox")
             | Kiireellinen
-          button(type="submit") Tallenna      
-      div(class="col-sm bg-warning")
+      div(class="col-sm col-1")
         h3 Tehtävälista
-        ul
           for item in tulevat
-            div(class="card")
+            div(class="card" style="width: 18rem;")
               div(class="card-body")
+                h6
                 =item.task + item.textarea + item.checkbox
               div(class="card-footer")
                 div(class="btn-group")
@@ -56,12 +56,8 @@ block content
                     input(type="hidden" value=item.textarea name="textarea")
                     input(type="hidden", name="divide", value=3)
                     button(type="submit" class="btn btn-secondary") Tehty       
-      div(class="col-sm bg-success")
-        h3 Tekeillä olevat tehtävät
-      div(class="col-sm bg-danger")
-        h3 Valmiit tehtävät
         div(class="btn-group")
-        ul
+          h3(class="kolumniotsikko") Kesken
           for item in nykyiset
             div(class="card")
               div(class="card-body")
@@ -99,8 +95,8 @@ block content
                     input(type="hidden" value=item.textarea name="textarea")
                     input(type="hidden", name="divide", value=3)
                     button(type="submit" class="btn btn-secondary") Tehty
-      div(class="col-sm bg-danger")
-        ul
+      div(class="col-sm col-1")
+        h3(class="kolumniotsikko") Valmiit
           for item in tehdyt
             div(class="card")
               div(class="card-body")
