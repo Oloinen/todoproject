@@ -8,6 +8,15 @@ block content
     let suljeIkkuna = function() {
       document.getElementById("myPopup").style.display = "none";
     }
+    let checkbox = function() {
+      document.getElementById("checkbox");
+      if (checkbox.value == "on"){
+        alert("Oletko varma, että haluat lisätä tehtävän kiireelliseksi?");
+      }
+    }
+    function cbclick(){
+      console.log("Klik");
+    }
   h1= title
   div(class="container.fluid")
     div(class="row")
@@ -27,7 +36,7 @@ block content
             ul(class="filter_list")
               li
                 label
-                  input(type="checkbox" name="checkbox")
+                  input(type="checkbox" onclick="cbclick()" name="checkbox" id="checkbox")
                   | Kiireellinen        
       div(class="col-sm bg-warning")
         h3 Tehtävälista
@@ -35,7 +44,7 @@ block content
           for item in tehtavat
             div(class="card")
               div(class="card-body")
-                =item.task + item.descrip + item.urgent
+                =item.task + item.textarea + item.checkbox
               div(class="card-footer")
                 div(class="btn-group")
                   button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Muokkaa
@@ -44,12 +53,12 @@ block content
                       p=item.task
                       div(class="form-group")
                         label(for="taskName") Tehtävä:
-                        input(type="text" placeholder="Tehtävä" name="task")
+                        input(type="text" placeholder="Tehtävä" name="task" maxlength="200")
                         input(type="hidden", name="id", value=item.id)
                         input(type="hidden" value=item.urgent name="urgent")
                       div(class="form-group")
                         label(for="taskDescription") Kuvaus
-                        textarea(rows=3 name="descrip")
+                        textarea(rows=3 name="descrip" maxlength="500")
                       div(class="form-group")
                         button(type="submit" class="btn btn-secondary") Tallenna
                   button(type="button" class="btn btn-secondary") 
