@@ -14,11 +14,22 @@ block content
       div(class="col-sm col1")
         h3 Syötä tehtävä
         form#formcreatetask(method="post",action="/addtask")
-          div(class="form-group")
-            label(for="taskName") Tehtävä:
-            input(type="text" placeholder="Tehtävä" name="task" required)
-         
-      div(class="col-sm bg-warning")  
+          input#formtask(type="text", placeholder="Tehtävä", name="task" required)
+          button#formsubmit(type="submit") Create
+            .container-fluid
+          textarea(rows=3 name="textarea").form-control
+            | Lisätiedot
+          div(class="select_box_area")
+            p(class="select")
+              span(class="placeholder")
+                | Tärkeys
+              em(class="fa fa-angle-down")
+            ul(class="filter_list")
+              li
+                label
+                  input(type="checkbox" name="checkbox")
+                  | Kiireellinen        
+      div(class="col-sm bg-warning")
         ul
           for item in tehtavat
             div(class="card")
