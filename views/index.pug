@@ -14,23 +14,23 @@ block content
       div(class="col-sm col1")
         h3 Syötä tehtävä
         form#formcreatetask(method="post",action="/addtask")
-          input#formtask(type="text", placeholder="Tehtävä", name="task" required)
+          input#formtask(type="text", placeholder="Tehtävä", name="task" maxlength="200" required)
           button#formsubmit(type="submit") Create
             .container-fluid
-          textarea(rows=3 name="textarea").form-control
-            | Lisätiedot
+          textarea(rows=3 name="textarea" maxlength="500" placeholder="Lisätiedot").form-control
+            | 
           div(class="select_box_area")
             p(class="select")
               span(class="placeholder")
-                | Tärkeys
+                h6 Tärkeys
               em(class="fa fa-angle-down")
             ul(class="filter_list")
               li
                 label
                   input(type="checkbox" name="checkbox")
                   | Kiireellinen        
-      div(class="col-sm")
       div(class="col-sm bg-warning")
+        h3 Tehtävälista
         ul
           for item in tehtavat
             div(class="card")
@@ -56,18 +56,11 @@ block content
                     a(href="http://localhost:3000/delete?id=" + item.id) Poista
               
       div(class="col-sm bg-success")
-        p Kolmas palsta
+        h3 Tekeillä olevat tehtävät
       div(class="col-sm bg-danger")
+        h3 Valmiit tehtävät
         div(class="btn-group")
-          button(type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown") Lomake
-          ul(class="dropdown-menu")
-            form(method="post" action="/edit")
-              div(class="form-group")
-                input(type="text" class="form-control" id="inputEmail1" placeholder="Email")
-              div(class="form-group")
-                input(type="text" class="form-control" id="inputPassword1" placeholder="Password")
-              div(class="form-group")
-              button(type="submit" class="btn btn-default") Sign in
+         
 
                 
       
