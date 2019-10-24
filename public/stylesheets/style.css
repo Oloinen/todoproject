@@ -97,3 +97,14 @@ body {
 .popupContainer .btn:hover, .btnOpen:hover {
   opacity: 1;
 }
+.korttiotsikko {
+font-size: 18px;
+text-align: left;
+}
+.korttivartalo {
+  font-size: 14px;
+  text-align: left;
+}
+.card-body {
+  padding: 10px;
+}
