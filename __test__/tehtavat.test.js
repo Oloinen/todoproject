@@ -3,13 +3,13 @@ const app = require('../app');
 //const tehtava = require('../routes/index').tehtava
 
 test("POST lisää tehtävän listaan", () => {
-  const uusi = {task: "Tanssi ripaskaa"};
+  const uusi = {task: "Viimeistele maalaus"};
   return request(app)
   .post("/")
   .type('form')
   .send(uusi)
   .then(response => {
-    expect(response.text).toMatch(/Tanssi ripaskaa/);
+    expect(response.text).toMatch(/Viimeistele maalaus/);
   });
 });
 
@@ -26,7 +26,7 @@ test('/delete poistaa tehtävän listalta', () => {
   .get("/delete")
   .send(uusi)
   .then(response => {
-    //expect(response.body.length).toBe(0);
+    expect(response.body.length).toBe(0);
     expect(response.statusCode).toBe(200);
   });
 });
