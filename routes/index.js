@@ -24,35 +24,6 @@ let nykyiset = [];
 let tehdyt = [];
 let tulevat =[];
 
-/*tulevat = tehtavat.filter(function(e) {
-  return e.divide == 1;
-})
-
-nykyiset = tehtavat.filter(function(e) {
-  return e.divide == 2;
-})
-
-tehdyt = tehtavat.filter(function(e) {
-  return e.divide == 3;
-})
-
-/*
-for(let i=0; i< tehtavat.length; i++) {
-  if(tehtavat.divide[i] == 2) {
-    nykyiset.push(tehtavat[i]);
-    tehtavat.splice(i,1);
-  }
-}
-
-for(let i=0; i< tehtavat.length; i++) {
-  if(tehtavat.divide[i] == 3) {
-    tehdyt.push(tehtavat[i]);
-    tehtavat.splice(i,1);
-  }
-}
-*/
-
-
 //lukee json-tiedoston ja parseroi sen, jotta voidaan käyttää
 fs.readFile('tehtavat.json', function(err, data) {
   try {
@@ -60,22 +31,19 @@ fs.readFile('tehtavat.json', function(err, data) {
   } catch (err) {
     console.error("Ongelma tiedoston 'tehtavat.json' kanssa:", err.message);
   }
+});
+
+//Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
+router.get('/', function(req, res, next) {
   tulevat = tehtavat.filter(function(e) {
     return e.divide == 1;
-  })
+  });
   nykyiset = tehtavat.filter(function(e) {
     return e.divide == 2;
   })
   tehdyt = tehtavat.filter(function(e) {
     return e.divide == 3;
   })
-  console.log(tulevat)
-  console.log(nykyiset)
-  console.log(tehdyt);
-});
-
-//Hakee ja renderöi kotisivun, jolle postaa json-tiedostosta tehtävät
-router.get('/', function(req, res, next) {
   res.render('index', { title: 'To Do -lista', tulevat:tulevat, nykyiset:nykyiset, tehdyt:tehdyt});
 });
 
@@ -86,8 +54,8 @@ router.post('/addtask', function(req, res, next) {
   let uusitehtava = req.body;
   uusitehtava.id = uuid();
   tehtavat.push(uusitehtava);
-  res.redirect('/');
   saveTehtavat();
+  res.redirect('/');
 })
 
 //Poistaa yhden tehtävän. Eli ensin tunnistaa id:n, vertaa sitä arrayhin, poimii sieltä vastaavan ja ottaa sen pois.
