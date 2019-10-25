@@ -1,0 +1,14 @@
+button(type="button" class="buttoni dropdown-toggle oikea" data-toggle="dropdown") Muokkaa
+ul(class="dropdown-menu p-3")
+    form(method="post" action="/edit")
+        div(class="form-group")
+            label(for="taskName") Tehtävä:
+            input(type="text" placeholder="Tehtävä" name="task" maxlength="200" required)
+            input(type="hidden", name="id", value=item.id)
+            input(type="hidden" value=item.urgent name="urgent")
+            input(type="hidden", name="divide", value=item.divide)
+        div(class="form-group")
+            label(for="taskDescription") Kuvaus
+            textarea(rows=3 name="teksti")
+        div(class="form-group")
+            button(type="submit" class="buttoni kaikki") Tallenna

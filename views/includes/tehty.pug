@@ -1,0 +1,7 @@
+form(method="post" action="/done")
+    input(type="hidden" name="task" value=item.task)
+    input(type="hidden" name="id" value=item.id)
+    input(type="hidden" value=item.urgent name="urgent")
+    input(type="hidden" value=item.teksti name="teksti")
+    input(type="hidden", name="divide", value=3)
+    button(type="submit" class="buttoni vasen") Valmis

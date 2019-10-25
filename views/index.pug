@@ -6,140 +6,25 @@ block content
     div(class="row")
       div(class="col-sm col-1")
         h3(class="kolumniotsikko") Syötä tehtävä
-        div(class="formidivi")
-          form(method="post",action="/addtask" class="formi")
-            div(class="form_area")
-              input(type="hidden" name="divide" value=1)
-              input(class="tuut" type="text" placeholder="Tehtävä", name="task" required maxlength="200")
-              textarea(class="tuut" name="teksti" rows=3 placeholder="Lisätiedot" maxlength="500")
-            div(class="select_box_area")
-              input(type="checkbox" name="urgent" value=0)
-              | Kiireellinen
-            button(type="submit" class="napukka") Lisää
+        include includes/mainform.pug
       div(class="col-sm col-1")
         h3(class="kolumniotsikko") Tehtävälista
         for item in tulevat
-          div(class="card")
-            div(class="card-body")
-              button(class="vaara")
-                a(href="http://localhost:3000/delete?id=" + item.id) x
-              h4(class="korttiotsikko")
-                =item.task 
-              p(class="korttivartalo") 
-                =item.teksti + "Seuraavaksi " + tulevat.length
-            div(class="card-footer")
-              div(class="btn-group" role="group" aria-label="Button group with nested dropdown")
-                form(method="post" action="/working")
-                  input(type="hidden" name="task" value=item.task)
-                  input(type="hidden" name="id" value=item.id)
-                  input(type="hidden" value=item.urgent name="urgent")
-                  input(type="hidden" value=item.teksti name="teksti")
-                  input(type="hidden", name="divide", value=2)
-                  button(type="submit" class="buttoni vasen") Kesken
-                form(method="post" action="/done")
-                  input(type="hidden" name="task" value=item.task)
-                  input(type="hidden" name="id" value=item.id)
-                  input(type="hidden" value=item.urgent name="urgent")
-                  input(type="hidden" value=item.teksti name="teksti")
-                  input(type="hidden", name="divide", value=3)
-                  button(type="submit" class="buttoni") Tehty
-                div
-                  button(type="button" class="buttoni dropdown-toggle oikea" data-toggle="dropdown") Muokkaa
-                  ul(class="dropdown-menu p-3")
-                    form(method="post" action="/edit")
-                      div(class="form-group")
-                        label(for="taskName") Tehtävä:
-                        input(type="text" placeholder="Tehtävä" name="task" maxlength="200")
-                        input(type="hidden", name="id", value=item.id)
-                        input(type="hidden" value=item.urgent name="urgent")
-                        input(type="hidden", name="divide", value=item.divide)
-                      div(class="form-group")
-                        label(for="taskDescription") Kuvaus
-                        textarea(rows=3 name="teksti")
-                      div(class="form-group")
-                        button(type="submit" class="buttoni kaikki") Tallenna
-          if tulevat.lenght=3
-            div(class="modal" tabindex="-1" role="dialog")
-              div(class="modal-dialog" role="document")
-                div(class="modal-content")
-                  div(class="modal-header")
-                    h5(class="modal-title") Modal title
-                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
-                      span(aria-hidden="true") &times;
-                  div(class="modal-body")
-                    p Modal body text goes here.
-                  div(class="modal-footer")
-                    button(type="button" class="btn btn-secondary" data-dismiss="modal") Close     
+          if item.urgent
+            include includes/tulevat2.pug
+          else
+            include includes/tulevat.pug
       div(class="col-sm col-1")
           h3(class="kolumniotsikko") Kesken
           for item in nykyiset
-            div(class="card")
-              div(class="card-body")
-                button(class="vaara")
-                  a(href="http://localhost:3000/delete?id=" + item.id) x
-                h4(class="korttiotsikko")
-                  =item.task 
-                p(class="korttivartalo") 
-                  =item.teksti
-              div(class="card-footer")
-                div(class="btn-group" role="group" aria-label="Button group with nested dropdown")
-                  form(method="post" action="/done")
-                    input(type="hidden" name="task" value=item.task)
-                    input(type="hidden" name="id" value=item.id)
-                    input(type="hidden" value=item.urgent name="urgent")
-                    input(type="hidden" value=item.teksti name="teksti")
-                    input(type="hidden", name="divide", value=3)
-                    button(type="submit" class="buttoni vasen") Tehty
-                  div
-                    button(type="button" class="buttoni dropdown-toggle oikea" data-toggle="dropdown") Muokkaa
-                    ul(class="dropdown-menu p-3")
-                      form(method="post" action="/edit")
-                        div(class="form-group")
-                          label(for="taskName") Tehtävä:
-                          input(type="text" placeholder="Tehtävä" name="task")
-                          input(type="hidden", name="id", value=item.id)
-                          input(type="hidden" value=item.urgent name="urgent")
-                          input(type="hidden", name="divide", value=item.divide)
-                        div(class="form-group")
-                          label(for="taskDescription") Kuvaus
-                          textarea(rows=3 name="teksti")
-                        div(class="form-group")
-                          button(type="submit" class="buttoni kaikki") Tallenna
+            if item.urgent
+              include includes/nykyiset2.pug
+            else 
+              include includes/nykyiset.pug
       div(class="col-sm col-1")
         h3(class="kolumniotsikko") Valmiit
         for item in tehdyt
-          div(class="card")
-            div(class="card-body")
-              button(class="vaara")
-                a(href="http://localhost:3000/delete?id=" + item.id) x
-              h4(class="korttiotsikko")
-                =item.task 
-              p(class="korttivartalo") 
-                =item.teksti
-            div(class="card-footer")
-              div(class="btn-group" role="group" aria-label="Button group with nested dropdown")
-                form(method="post" action="/working")
-                  input(type="hidden" name="task" value=item.task)
-                  input(type="hidden" name="id" value=item.id)
-                  input(type="hidden" value=item.urgent name="urgent")
-                  input(type="hidden" value=item.teksti name="teksti")
-                  input(type="hidden", name="divide", value=2)
-                  button(type="submit" class="buttoni vasen") Kesken
-                div
-                  button(type="button" class="buttoni oikea dropdown-toggle" data-toggle="dropdown") Muokkaa
-                  ul(class="dropdown-menu p-3")
-                    form(method="post" action="/edit")
-                      div(class="form-group")
-                        label(for="taskName") Tehtävä:
-                        input(type="text" placeholder="Tehtävä" name="task")
-                        input(type="hidden", name="id", value=item.id)
-                        input(type="hidden" value=item.urgent name="urgent")
-                        input(type="hidden", name="divide", value=item.divide)
-                      div(class="form-group")
-                        label(for="taskDescription") Kuvaus
-                        textarea(rows=3 name="teksti")
-                      div(class="form-group")
-                        button(type="submit" class="buttoni kaikki") Tallenna
+          include includes/valmiit.pug
 
                 
       
