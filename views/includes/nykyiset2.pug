@@ -1,0 +1,13 @@
+div(class="card")
+    div(class="card-body")
+        img(src="../stylesheets/exclamation.jpg")
+        h4(class="korttiotsikko")
+            =item.task 
+        p(class="korttivartalo") 
+            =item.teksti
+    div(class="card-footer")
+        div(class="btn-group" role="group" aria-label="Button group with nested dropdown")
+            include tehty.pug
+            div
+                include editform.pug
+        button(class="vaara"): a(href="http://localhost:3000/delete?id=" + item.id) x

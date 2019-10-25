@@ -1,0 +1,11 @@
+div(class="mform_outer")    
+    div(class="mform_inner")
+        form(method="post",action="/addtask" class="formi")
+            div(class="form_area")
+                input(type="hidden" name="divide" value=1)
+                input(type="text" placeholder="Tehtävä", name="task" required maxlength="200")
+                textarea(name="teksti" rows=3 placeholder="Lisätiedot" maxlength="500")
+            div(class="select_box")
+                input(type="checkbox" name="urgent" value=0)
+                | Kiireellinen
+            button(type="submit" class="napukka") Lisää

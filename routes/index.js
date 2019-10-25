@@ -7,6 +7,7 @@ let app = express();
 //app.use(bodyParser.urlencoded({extended:true}));
 //app.use(bodyParser());
 
+
 //array, jotta saadaan json-tiedoston tiedot käyttöön
 let tehtavat = [];
 let nykyiset = [];
@@ -33,16 +34,12 @@ router.get('/', function(req, res, next) {
   tehdyt = tehtavat.filter(function(e) {
     return e.divide == 3;
   })
-  res.render('index', { title: 'To Do -lista', tulevat:tulevat, nykyiset:nykyiset, tehdyt:tehdyt});
+  res.render('index', {tulevat:tulevat, nykyiset:nykyiset, tehdyt:tehdyt});
 });
 
 //Post-toiminto, jolla voi lisätä tehtäviä listaan -> vastaanottaa käyttäjän syötteen ja lisää olion palvelimella olevaan arrayhyn
 //Lisäksi ohjaa selaimen takaisin etusivulle, ettei selain jää roikkumaan /addtask-sivulle
 router.post('/addtask', function(req, res, next) {
-  tulevat = tehtavat.filter(function(e) {
-    return e.divide == 1;
-  });
-  if (tulevat.length < 3) {
   req.body.teksti=req.body.teksti || "";
   req.body.urgent=req.body.urgent || false;
   let uusitehtava = req.body;
@@ -50,9 +47,6 @@ router.post('/addtask', function(req, res, next) {
   tehtavat.push(uusitehtava);
   saveTehtavat();
   res.redirect('/');
-  } else {
-  res.redirect('/');
-  }
 })
 
 //Poistaa yhden tehtävän. Eli ensin tunnistaa id:n, vertaa sitä arrayhin, poimii sieltä vastaavan ja ottaa sen pois.

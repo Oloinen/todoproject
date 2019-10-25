@@ -9,17 +9,13 @@ body {
 .otsikko {
   font: 200 80px/1.3 'Cormorant Garamond', sans-serif;
   text-align: center;
-  color: rgb(250, 231, 196) ;
+  color: rgb(247, 237, 218) ;
+  opacity: 0.9;
 }
 .kolumniotsikko {
   font: 200 25px/1.3 'Fira Sans', sans-serif;
   text-align: center;
   color: #4b2c29;
-}
-.container {
-  display: flex;
-  width: 100%;
-  background-color: pink;
 }
 .col-1 {
   background: rgb(234, 198, 122, 0.8);
@@ -28,10 +24,54 @@ body {
   margin: 10px;
   min-height: 550px;
 }
+.mform_inner {
+  width: 240px;
+  margin: auto;
+}
 
-.card {
-  margin: 20px auto;
+.mform_inner input[type=text] {
+  height: 30px;
+  color: blue;
+}
+.mform_inner textarea {
+  height: 80px !important;
+}
+.select_box {
+  color: white;
+}
+
+input[type=checkbox] {
+  margin: 4px 6px 8px 0;
+}
+
+.mform_inner input[type=text], .mform_inner textarea {
+  border-radius: 5px;
+  color:black;
+  background-color: white !important;
+  width: 100%;
+  margin: 10px 0;
+  align-content: center;
+}
+
+.mform_outer {
+  background-color: rgb(75,44,41,0.7);
+  border-radius: 15px;
   width: 280px;
+  margin: auto;
+  padding-top: 25px;
+  height: 300px;
+  margin-top: 30px;
+}
+
+.napukka {
+  width: 100%;
+  height: 30px;
+  background-color: #9e5c48;
+  border: none;
+  margin: 10px 0px;
+  color: white !important;
+  border-radius: 5px;
+  opacity: 0.8;
 }
 
 .buttoni {
@@ -44,30 +84,13 @@ body {
   height: 25px;
 }
 
-.container.fluid .buttoni:hover, .napukka:hover {
+.buttoni:hover, .napukka:hover {
   opacity: 1;
 }
 
-.formidivi {
-  width: 200px;
-  margin: auto;
-}
-
-.tuut {
-  width: 100%;
-  margin: 10px 0;
-  align-content: center;
-}
-
-.napukka {
-  width: 100%;
-  height: 30px;
-  background-color: #984b43;
-  border: none;
-  margin: 10px 0px;
-  color: white;
-  border-radius: 4px;
-  opacity: 0.8;
+.card {
+  margin: 20px auto;
+  width: 280px;
 }
 
 .korttiotsikko {
@@ -88,6 +111,11 @@ body {
   padding: 7px !important;
 }
 
+.card-body img {
+  height: 30px;
+  width: 33px;
+  float: right;
+}
 .vaara {
   background-color: #984b43;
   border-radius: 20px;
