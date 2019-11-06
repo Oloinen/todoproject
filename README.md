@@ -1,2 +1,2 @@
 # ToDoProject
-Testi!
+Ensimmäinen miniprojekti! Koodasin palvelinpuolen tähän projektiin eli täähän on perinteinen webbisovellus, johon käytin Express.js:aa ja Pugia. Ei ole rest apia, tietenkään. Palvelin koodattu javascriptilla, pugissa sitä aika vähän. En vastannut varsinaisesti bootstrap-puolesta, mutta myös sen kanssa tuli itse väännettyä, muun muassa drop down -valikko on allekirjoittaneen käsialaa. Niin ja se, miten sivusto juttelee palvelimen kanssa.
